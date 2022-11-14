@@ -9,11 +9,12 @@ public class DebugUISample : MonoBehaviour
 {
     bool inMenu;
     private Text sliderText;
+    public FileManager fileManager;
 
 	void Start ()
     {
-        DebugUIBuilder.instance.AddButton("Button Pressed", LogButtonPressed);
-        DebugUIBuilder.instance.AddLabel("Label");
+        //DebugUIBuilder.instance.AddLabel("Recent hardware advancements in Virtual Reality (VR) have fueled the demand and adoption of VR headsets. Consumer-ready headsets are currently being used for a variety of life-saving procedures as well as entertainment experiences. Text input is one of the crucial components of these experiences. The development of recent VR applications have created a demand for the quick and effective text entry systems. To this end numerous text input methods have been developed and investigated since the invention of virtual reality in order to improve the experience of typing while wearing Head-Mounted Displays (HMDs) and using handheld controllers");
+        DebugUIBuilder.instance.AddButton("Save To File", LogButtonPressed);
         var sliderPrefab = DebugUIBuilder.instance.AddSlider("Slider", 1.0f, 10.0f, SliderPressed, true);
         var textElementsInSlider = sliderPrefab.GetComponentsInChildren<Text>();
         Assert.AreEqual(textElementsInSlider.Length, 2, "Slider prefab format requires 2 text components (label + value)");
@@ -61,5 +62,12 @@ public class DebugUISample : MonoBehaviour
     void LogButtonPressed()
     {
         Debug.Log("Button pressed");
+        if (fileManager.OnSave()){
+            DebugUIBuilder.instance.AddLabel("File Saved");
+        }
+        else
+        {
+            DebugUIBuilder.instance.AddLabel("Something went wrong");
+        }
     }
 }
