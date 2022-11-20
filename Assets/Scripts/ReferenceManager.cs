@@ -21,4 +21,5 @@ public class ReferenceManager : MonoBehaviour
     }
 
     public DataManager _dataManager;
+    
 }

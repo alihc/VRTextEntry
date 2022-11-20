@@ -8,7 +8,7 @@ public class FileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        OnRead();
     }
 
     public bool OnSave()
@@ -25,6 +25,20 @@ public class FileManager : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    public void OnRead()
+    {
+        TextAsset txt = (TextAsset)Resources.Load("phrases", typeof(TextAsset));
+        List<string> phrases = new List<string>(txt.text.Split('\n'));
+        for(int i = 0; i < phrases.Count; i++)
+        {
+            //Debug.Log("Phrase: " + phrases[i]);
+            TextPhraseData newPhrase= new TextPhraseData();
+            newPhrase.phrase = phrases[i];
+            newPhrase.hasUsed = false;
+            ReferenceManager.Instance._dataManager.PhrasesData.Add(newPhrase);
         }
     }
 }

@@ -6,13 +6,16 @@ using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
-    public InputField initialsInputField;
+	[Header("Welcome Screen")]
+	public InputField initialsInputField;
 	public InputField ageInputField;
 	public Button maleButton, femaleButton;
 	public GameObject maleButtonSelected, femaleButtonSelected;
 	public Button vrExpYesButton, vrExpNoButton;
 	public GameObject vrExpYesButtonSelected, vrExpNoButtonSelected;
 	public KeyBoard keyBoardIn, keyBoardNum;
+	[Header("Input Screen")]
+	public Text referenceText;
 
 
 	public void Start()
