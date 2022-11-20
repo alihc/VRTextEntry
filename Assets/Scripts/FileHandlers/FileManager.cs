@@ -13,7 +13,7 @@ public class FileManager : MonoBehaviour
 
     public bool OnSave()
     {
-        string fname =  "ah.txt";
+        string fname =  ReferenceManager.Instance._dataManager.UserData.initials+".txt";
         string path = Path.Combine(Application.persistentDataPath, fname);
         StreamWriter sw = new StreamWriter(path, false);
         sw.WriteLine("Table successfully written to file!");
