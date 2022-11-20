@@ -17,7 +17,7 @@ public class UiManager : MonoBehaviour
 
 	public void Start()
 	{
-
+		
 		initialsInputField.onEndEdit.AddListener(delegate { OnInitialsDone(initialsInputField); });
 		ageInputField.onEndEdit.AddListener(delegate { OnAgeDone(ageInputField); });
         maleButton.onClick.AddListener(delegate { OnSex(true); });
