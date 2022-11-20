@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+
 
 public class UiManager : MonoBehaviour
 {
-    public TMP_InputField initialsInputField;
-	public TMP_InputField ageInputField;
+    public InputField initialsInputField;
+	public InputField ageInputField;
 	public Button maleButton, femaleButton;
 	public GameObject maleButtonSelected, femaleButtonSelected;
 	public Button vrExpYesButton, vrExpNoButton;
 	public GameObject vrExpYesButtonSelected, vrExpNoButtonSelected;
+	public KeyBoard keyBoardIn, keyBoardNum;
 
 
 	public void Start()
@@ -26,13 +27,13 @@ public class UiManager : MonoBehaviour
 	}
 
 	
-	void OnInitialsDone(TMP_InputField input)
+	void OnInitialsDone(InputField input)
 	{
 		string _text= input.text;
         ReferenceManager.Instance._dataManager.UserData.initials = _text;
 	}
 
-	void OnAgeDone(TMP_InputField input)
+	void OnAgeDone(InputField input)
 	{
 		string _text = input.text;
 		ReferenceManager.Instance._dataManager.UserData.age = _text;

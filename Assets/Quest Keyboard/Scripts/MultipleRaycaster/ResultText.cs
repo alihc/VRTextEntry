@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ResultText : MonoBehaviour
 {
-    public InputField inpTxt;
+    public InputField outTxt;
     Text resultText;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,10 @@ public class ResultText : MonoBehaviour
 
     public void ShowText()
     {
-        resultText.text = "YOU WROTE:\n " + inpTxt.text;
+        resultText.text = outTxt.text;
+    }
+    public void ShowText(InputField inpTxt)
+    {
+        outTxt.text = inpTxt.text;
     }
 }
