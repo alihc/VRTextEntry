@@ -2641,6 +2641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveInputField: {fileID: 1866134254}
+  textEntryTrialManager: {fileID: 0}
   acceptEvent:
     m_PersistentCalls:
       m_Calls:
@@ -6774,6 +6775,7 @@ MonoBehaviour:
     age: 
     sex: 
     previousVRExp: 
+  PhrasesData: []
 --- !u!114 &748045254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6787,6 +6789,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dataManager: {fileID: 748045253}
+  _uiManager: {fileID: 0}
+  _textEntryTrialManager: {fileID: 0}
 --- !u!4 &748045255
 Transform:
   m_ObjectHideFlags: 0
@@ -9853,6 +9857,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveInputField: {fileID: 2021952860}
+  textEntryTrialManager: {fileID: 0}
   acceptEvent:
     m_PersistentCalls:
       m_Calls:
@@ -12851,6 +12856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4ee8179bcda453b9835c9db9c5a80e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isWelcomeScene: 1
   initialsInputField: {fileID: 1336807447}
   ageInputField: {fileID: 1336807449}
   maleButton: {fileID: 1957856753}
@@ -12863,6 +12869,10 @@ MonoBehaviour:
   vrExpNoButtonSelected: {fileID: 1957856744}
   keyBoardIn: {fileID: 0}
   keyBoardNum: {fileID: 0}
+  startButton: {fileID: 0}
+  referenceTextParent: {fileID: 0}
+  referenceText: {fileID: 0}
+  resultsScreen: {fileID: 0}
 --- !u!65 &1211255779
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21821,6 +21831,10 @@ PrefabInstance:
     - target: {fileID: 4822064398786249787, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
       propertyPath: m_Name
       value: Questionaire-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822064398786249787, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4862911935649549907, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
       propertyPath: m_TargetGraphic

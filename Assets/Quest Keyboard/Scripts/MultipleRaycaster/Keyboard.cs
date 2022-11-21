@@ -14,6 +14,7 @@ public class Keyboard : MonoBehaviour
     // Start is called before the first frame update
     public InputField objectiveInputField;
     public static Keyboard KB;
+    public TextEntryTrialManager textEntryTrialManager;
 
     public MyEvent acceptEvent;
 
@@ -34,6 +35,10 @@ public class Keyboard : MonoBehaviour
     public void AddChar(string c)
     {
         objectiveInputField.text +=c;
+        if(textEntryTrialManager!=null)
+        {
+            textEntryTrialManager.totalKeystrokes++;
+        }
     }
 
     //removing a letter from the input

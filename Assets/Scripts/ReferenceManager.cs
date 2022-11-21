@@ -21,5 +21,7 @@ public class ReferenceManager : MonoBehaviour
     }
 
     public DataManager _dataManager;
+    public UiManager _uiManager;
+    public TextEntryTrialManager _textEntryTrialManager;
     
 }

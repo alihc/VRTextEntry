@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/TypingScene.unity
+    guid: f3be401b30e13084fba54d99e8d58c76
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 0dd293e008e484f9c93d5c714cbe45a3, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 685e1450380e0457ca7964904b1f4d30, type: 2}
