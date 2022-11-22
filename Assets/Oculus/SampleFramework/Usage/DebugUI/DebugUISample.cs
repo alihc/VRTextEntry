@@ -61,13 +61,6 @@ public class DebugUISample : MonoBehaviour
 
     void LogButtonPressed()
     {
-        Debug.Log("Button pressed");
-        if (fileManager.OnSave()){
-            DebugUIBuilder.instance.AddLabel("File Saved");
-        }
-        else
-        {
-            DebugUIBuilder.instance.AddLabel("Something went wrong");
-        }
+        
     }
 }

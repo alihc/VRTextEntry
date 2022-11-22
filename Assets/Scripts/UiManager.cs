@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class UiManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class UiManager : MonoBehaviour
 	public Button vrExpYesButton, vrExpNoButton;
 	public GameObject vrExpYesButtonSelected, vrExpNoButtonSelected;
 	public KeyBoard keyBoardIn, keyBoardNum;
+	public Button proceeedButon;
 	[Header("Trail Screen")]
 	public GameObject startButton;
 	public GameObject referenceTextParent;
@@ -23,6 +25,7 @@ public class UiManager : MonoBehaviour
 	public Text debugText;
 
 
+	private bool isInitialDone, isAgeDone, isSexDone, isExpDone;
 	public void Start()
 	{
         if (isWelcomeScene)
@@ -33,6 +36,8 @@ public class UiManager : MonoBehaviour
 			femaleButton.onClick.AddListener(delegate { OnSex(false); });
 			vrExpYesButton.onClick.AddListener(delegate { OnVrExpierience(true); });
 			vrExpNoButton.onClick.AddListener(delegate { OnVrExpierience(false); });
+			proceeedButon.gameObject.SetActive(false);
+			
 		}
 		else
 		{
@@ -51,12 +56,33 @@ public class UiManager : MonoBehaviour
 	{
 		string _text= input.text;
         ReferenceManager.Instance._dataManager.UserData.initials = _text;
+		if(string.IsNullOrWhiteSpace(_text))
+        {
+			isInitialDone = false;
+		}
+		else
+		{
+			isInitialDone = true;
+		}
+		//isInitialDone = true;
+		CheckProceesButton();
 	}
 
 	void OnAgeDone(InputField input)
 	{
 		string _text = input.text;
 		ReferenceManager.Instance._dataManager.UserData.age = _text;
+		if (string.IsNullOrWhiteSpace(_text))
+		{
+			isAgeDone = false;
+
+        }
+        else
+        {
+			isAgeDone = true;
+        }
+		//isAgeDone = true;
+		CheckProceesButton();
 	}
 
 	void OnSex(bool isMale)
@@ -65,6 +91,8 @@ public class UiManager : MonoBehaviour
 		maleButtonSelected.SetActive(isMale);
 		femaleButtonSelected.SetActive(!isMale);
 		ReferenceManager.Instance._dataManager.UserData.sex = isMale ? "Male" : "Female";
+		isSexDone = true;
+		CheckProceesButton();
 	}
 
 	void OnVrExpierience(bool isYes)
@@ -73,6 +101,29 @@ public class UiManager : MonoBehaviour
 		vrExpYesButtonSelected.SetActive(isYes);
 		vrExpNoButtonSelected.SetActive(!isYes);
 		ReferenceManager.Instance._dataManager.UserData.previousVRExp = isYes ? "Yes" : "No";
+		isExpDone = true;
+		CheckProceesButton();
+	}
+
+	void CheckProceesButton()
+    {
+		if(isInitialDone && isAgeDone && isSexDone && isExpDone)
+        {
+			proceeedButon.gameObject.SetActive(true);
+		}
+        else
+        {
+			proceeedButon.gameObject.SetActive(false);
+		}
+    }
+
+	public void OnProceedButton()
+    {
+		string path= ReferenceManager.Instance.fileManager.OnInfoSave();
+		ReferenceManager.Instance._dataManager.path = path;
+		
+		SceneManager.LoadScene(1);
+
 	}
 
 

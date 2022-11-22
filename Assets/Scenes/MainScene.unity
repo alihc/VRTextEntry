@@ -6776,6 +6776,17 @@ MonoBehaviour:
     sex: 
     previousVRExp: 
   PhrasesData: []
+  TrialDatas:
+  - condition: SSC
+    block: 1
+    trial: 2
+    characters: 36
+    time: 112
+    MSD: 1
+    speed: 15.66
+    error_rate: 0
+    SPC: 1
+  path: 
 --- !u!114 &748045254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6788,6 +6799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fd367e20d4847d19fc492e797201d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileManager: {fileID: 748045256}
   _dataManager: {fileID: 748045253}
   _uiManager: {fileID: 0}
   _textEntryTrialManager: {fileID: 0}
@@ -10575,6 +10587,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 567609067275951437, guid: 4b16d36f084dffb4ca22f1affb5e06b0, type: 3}
   m_PrefabInstance: {fileID: 1009476236}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1016790631 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4862911936421856655, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+  m_PrefabInstance: {fileID: 1957856743}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1043110337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12869,10 +12892,12 @@ MonoBehaviour:
   vrExpNoButtonSelected: {fileID: 1957856744}
   keyBoardIn: {fileID: 0}
   keyBoardNum: {fileID: 0}
+  proceeedButon: {fileID: 1016790631}
   startButton: {fileID: 0}
   referenceTextParent: {fileID: 0}
   referenceText: {fileID: 0}
   resultsScreen: {fileID: 0}
+  debugText: {fileID: 0}
 --- !u!65 &1211255779
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21740,10 +21765,18 @@ PrefabInstance:
       propertyPath: keyboard
       value: 
       objectReference: {fileID: 1382437693}
+    - target: {fileID: 1336807450, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+      propertyPath: mainInputField
+      value: 
+      objectReference: {fileID: 1336807447}
     - target: {fileID: 1336807451, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
       propertyPath: keyboard
       value: 
       objectReference: {fileID: 1092828104}
+    - target: {fileID: 1336807451, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+      propertyPath: mainInputField
+      value: 
+      objectReference: {fileID: 1336807449}
     - target: {fileID: 4822064398786249784, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -21832,9 +21865,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Questionaire-1
       objectReference: {fileID: 0}
-    - target: {fileID: 4822064398786249787, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 4822064399780228803, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+      propertyPath: m_text
+      value: Please answer the following questions before procedding further.
       objectReference: {fileID: 0}
     - target: {fileID: 4862911935649549907, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
       propertyPath: m_TargetGraphic
@@ -21844,6 +21877,22 @@ PrefabInstance:
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 1768541872}
+    - target: {fileID: 4862911936421856655, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862911936421856655, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1211255778}
+    - target: {fileID: 4862911936421856655, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnProceedButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862911936421856655, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UiManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4862911936858952187, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
       propertyPath: m_TargetGraphic
       value: 

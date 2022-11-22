@@ -20,6 +20,7 @@ public class ReferenceManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    public FileManager fileManager;
     public DataManager _dataManager;
     public UiManager _uiManager;
     public TextEntryTrialManager _textEntryTrialManager;
