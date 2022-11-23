@@ -4,15 +4,14 @@ using System;
 
 public class TextEntryTrialManager : MonoBehaviour
 {
+    public string keyboardType;
     public GameObject keyboard;
     public Keyboard keyboardScript;
     public Stopwatch stopwatch;
-    [Header("Trail Settings")]
-    public int blockSize;
+
 
 
     [Header("Runtime")]
-    public int currentTrial;
     public int totalKeystrokes;
     // Start is called before the first frame update
     void Start()
@@ -49,25 +48,25 @@ public class TextEntryTrialManager : MonoBehaviour
     {
         
         keyboard.SetActive(false);
-        currentTrial++;
-        if(currentTrial==blockSize)
+        ReferenceManager.Instance.currentTrial++;
+        if (ReferenceManager.Instance.currentTrial == ReferenceManager.Instance.blockSize)
         {
-            // TODO Implement End Screen
+            CalculatePerformance(inputText.text, true);
+            ReferenceManager.Instance.fileManager.OnBlockSave();
+            ReferenceManager.Instance.currentBlock++;
+            ReferenceManager.Instance.currentTrial = 0;
+
 
         }
         else
         {
-
+            CalculatePerformance(inputText.text, false);
         }
         
-        CalculatePerformance(inputText.text);
-        
-
-
 
     }
 
-    void CalculatePerformance(string inputText)
+    void CalculatePerformance(string inputText, bool isBlockDone)
     {
         stopwatch.Pause();
         int _seconds = stopwatch.GetSeconds();
@@ -87,7 +86,20 @@ public class TextEntryTrialManager : MonoBehaviour
         float kspc = (float)totalKeystrokes / (float)count;
         int MSD = LevenshteinDistance(ReferenceManager.Instance._uiManager.referenceText.text, inputText);
         float errorRate = CalculateErrorRate(ReferenceManager.Instance._uiManager.referenceText.text, inputText, MSD);
-        ReferenceManager.Instance._uiManager.resultsScreen.ShowResults(ReferenceManager.Instance._uiManager.referenceText.text, inputText, characters, _seconds, speedWpm, errorRate, MSD, kspc);
+        //Data Writting
+        TrialData data = new TrialData();
+        data.keyboard = keyboardType;
+        data.condition = ReferenceManager.Instance.condition;
+        data.block = ReferenceManager.Instance.currentBlock+1.ToString();
+        data.trial = ReferenceManager.Instance.currentTrial.ToString();
+        data.characters = characters.ToString();
+        data.time = _seconds.ToString();
+        data.MSD = MSD.ToString();
+        data.speed = speedWpm.ToString();
+        data.error_rate = errorRate.ToString();
+        data.SPC = kspc.ToString();
+        ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].Trials.Add(data);
+        ReferenceManager.Instance._uiManager.resultsScreen.ShowResults(ReferenceManager.Instance._uiManager.referenceText.text, inputText, characters, _seconds, speedWpm, errorRate, MSD, kspc, isBlockDone);
     }
 
     /// <summary>

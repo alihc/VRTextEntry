@@ -2647,7 +2647,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2063558292}
         m_TargetAssemblyTypeName: ResultText, Assembly-CSharp
-        m_MethodName: ShowText
+        m_MethodName: OnAge
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1866134254}
@@ -3121,7 +3121,7 @@ MonoBehaviour:
   cursor_L: {fileID: 1989088493}
   cursor_R: {fileID: 1605450944}
   overColor: {r: 0, g: 0.58431375, b: 0.93725497, a: 1}
-  normalColor: {r: 0.10980393, g: 0.10980393, b: 0.10980393, a: 1}
+  normalColor: {r: 0.10980392, g: 0.10980392, b: 0.10980392, a: 1}
 --- !u!4 &345191816
 Transform:
   m_ObjectHideFlags: 0
@@ -6776,16 +6776,12 @@ MonoBehaviour:
     sex: 
     previousVRExp: 
   PhrasesData: []
-  TrialDatas:
-  - condition: SSC
-    block: 1
-    trial: 2
-    characters: 36
-    time: 112
-    MSD: 1
-    speed: 15.66
-    error_rate: 0
-    SPC: 1
+  Blocks:
+  - Trials: []
+  - Trials: []
+  - Trials: []
+  - Trials: []
+  - Trials: []
   path: 
 --- !u!114 &748045254
 MonoBehaviour:
@@ -6799,9 +6795,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fd367e20d4847d19fc492e797201d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalBlocks: 5
+  blockSize: 5
+  currentTrial: 0
+  currentBlock: 0
+  condition: ssc
   fileManager: {fileID: 748045256}
   _dataManager: {fileID: 748045253}
-  _uiManager: {fileID: 0}
+  _uiManager: {fileID: 1211255778}
   _textEntryTrialManager: {fileID: 0}
 --- !u!4 &748045255
 Transform:
@@ -9875,7 +9876,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2063558293}
         m_TargetAssemblyTypeName: ResultText, Assembly-CSharp
-        m_MethodName: ShowText
+        m_MethodName: OnInitials
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2021952860}
@@ -10580,6 +10581,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: symbol
       objectReference: {fileID: 0}
+    - target: {fileID: 567609067275951438, guid: 4b16d36f084dffb4ca22f1affb5e06b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b16d36f084dffb4ca22f1affb5e06b0, type: 3}
 --- !u!224 &1009476237 stripped
@@ -11256,7 +11261,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092828104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.85}
+  m_LocalPosition: {x: 0, y: 0, z: 3.77}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12980,7 +12985,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211255777}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3.172}
+  m_LocalPosition: {x: 0, y: 0, z: 3.922}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15646,7 +15651,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382437693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.85}
+  m_LocalPosition: {x: 0, y: 0, z: 3.77}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16360,6 +16365,10 @@ PrefabInstance:
     - target: {fileID: 1161329111672419781, guid: 4aebb9de918fd5b4fa799f99be4a2893, type: 3}
       propertyPath: m_Name
       value: XR Rig
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490539403989416289, guid: 4aebb9de918fd5b4fa799f99be4a2893, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3690198211192787763, guid: 4aebb9de918fd5b4fa799f99be4a2893, type: 3}
       propertyPath: m_RootOrder
@@ -22635,6 +22644,10 @@ PrefabInstance:
     - target: {fileID: 7971344778433935895, guid: 62b7c1b7bac9b8145bf9ce3cba8f7a1b, type: 3}
       propertyPath: m_Name
       value: CursorL
+      objectReference: {fileID: 0}
+    - target: {fileID: 7971344778433935895, guid: 62b7c1b7bac9b8145bf9ce3cba8f7a1b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62b7c1b7bac9b8145bf9ce3cba8f7a1b, type: 3}

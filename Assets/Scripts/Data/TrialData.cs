@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class TrialData
 {
-
+    public string keyboard;
     public string condition;
     public string block;
     public string trial;

@@ -30,33 +30,34 @@ public class UiManager : MonoBehaviour
 	{
         if (isWelcomeScene)
         {
-			initialsInputField.onEndEdit.AddListener(delegate { OnInitialsDone(initialsInputField); });
-			ageInputField.onEndEdit.AddListener(delegate { OnAgeDone(ageInputField); });
+			
 			maleButton.onClick.AddListener(delegate { OnSex(true); });
 			femaleButton.onClick.AddListener(delegate { OnSex(false); });
 			vrExpYesButton.onClick.AddListener(delegate { OnVrExpierience(true); });
 			vrExpNoButton.onClick.AddListener(delegate { OnVrExpierience(false); });
 			proceeedButon.gameObject.SetActive(false);
 			
+			
 		}
 		else
 		{
+			ReferenceManager.Instance._uiManager = this;
 			Invoke("OnResultsOk", 2f);
 		}
 
 
-		ReferenceManager.Instance._uiManager = this;
+		
 
        
 		
 	}
 
 	
-	void OnInitialsDone(InputField input)
+	public void OnInitialsDone(string input)
 	{
-		string _text= input.text;
+		string _text= input;
         ReferenceManager.Instance._dataManager.UserData.initials = _text;
-		if(string.IsNullOrWhiteSpace(_text))
+		if(string.IsNullOrEmpty(_text))
         {
 			isInitialDone = false;
 		}
@@ -68,11 +69,11 @@ public class UiManager : MonoBehaviour
 		CheckProceesButton();
 	}
 
-	void OnAgeDone(InputField input)
+	public void OnAgeDone(string input)
 	{
-		string _text = input.text;
+		string _text = input;
 		ReferenceManager.Instance._dataManager.UserData.age = _text;
-		if (string.IsNullOrWhiteSpace(_text))
+		if (string.IsNullOrEmpty(_text))
 		{
 			isAgeDone = false;
 
@@ -121,7 +122,6 @@ public class UiManager : MonoBehaviour
     {
 		string path= ReferenceManager.Instance.fileManager.OnInfoSave();
 		ReferenceManager.Instance._dataManager.path = path;
-		
 		SceneManager.LoadScene(1);
 
 	}

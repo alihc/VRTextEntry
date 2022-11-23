@@ -20,6 +20,16 @@ public class ReferenceManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    [Header("Settings")]
+    public int totalBlocks = 5;
+    public int blockSize = 5;
+    [Header("runTime")]
+    public int currentTrial;
+    public int currentBlock;
+    public string condition;
+
+
+    [Header("Links")]
     public FileManager fileManager;
     public DataManager _dataManager;
     public UiManager _uiManager;

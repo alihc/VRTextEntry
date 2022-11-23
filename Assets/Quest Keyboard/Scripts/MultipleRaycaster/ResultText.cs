@@ -23,8 +23,14 @@ public class ResultText : MonoBehaviour
     {
         resultText.text = outTxt.text;
     }
-    public void ShowText(InputField inpTxt)
+    public void OnInitials(InputField inpTxt)
     {
         outTxt.text = inpTxt.text;
+        ReferenceManager.Instance._uiManager.OnInitialsDone(inpTxt.text);
+    }
+    public void OnAge(InputField inpTxt)
+    {
+        outTxt.text = inpTxt.text;
+        ReferenceManager.Instance._uiManager.OnAgeDone(inpTxt.text);
     }
 }
