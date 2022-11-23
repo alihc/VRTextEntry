@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class TextEntryTrialManager : MonoBehaviour
 {
@@ -13,14 +14,41 @@ public class TextEntryTrialManager : MonoBehaviour
 
     [Header("Runtime")]
     public int totalKeystrokes;
+    bool isTyping;
+
+
+    private List<KeystoreItems> keystoreItems;
     // Start is called before the first frame update
     void Start()
     {
         ReferenceManager.Instance._textEntryTrialManager = this;
-        
+        keystoreItems = new List<KeystoreItems>();
+
     }
 
-   public void SelectNewPhrase()
+    private void OnEnable()
+    {
+        Keyboard.OnKey += OnKeyPressed;
+    }
+
+    private void OnDisable()
+    {
+        Keyboard.OnKey -= OnKeyPressed;
+    }
+
+    void OnKeyPressed(string c)
+    {
+        if (isTyping)
+        {
+            KeystoreItems item = new KeystoreItems();
+            item.time = stopwatch.GetMilliseconds();
+            item.character = c;
+            keystoreItems.Add(item);
+        }
+       
+    }
+
+    public void SelectNewPhrase()
     {
         int n = UnityEngine.Random.Range(0, ReferenceManager.Instance._dataManager.PhrasesData.Count);
         while (ReferenceManager.Instance._dataManager.PhrasesData[n].hasUsed)
@@ -29,7 +57,8 @@ public class TextEntryTrialManager : MonoBehaviour
         }
         ReferenceManager.Instance._dataManager.PhrasesData[n].hasUsed = true;
         ReferenceManager.Instance._uiManager.referenceText.text = ReferenceManager.Instance._dataManager.PhrasesData[n].phrase;
-        
+       
+
 
 
     }
@@ -42,6 +71,7 @@ public class TextEntryTrialManager : MonoBehaviour
         keyboard.SetActive(true);
        
         stopwatch.Begin();
+        isTyping = true;
     }
 
     public void OnPhraseDone(InputField inputText)
@@ -53,6 +83,7 @@ public class TextEntryTrialManager : MonoBehaviour
         {
             CalculatePerformance(inputText.text, true);
             ReferenceManager.Instance.fileManager.OnBlockSave();
+            ReferenceManager.Instance.fileManager.OnKeystrokeSave();
             ReferenceManager.Instance.currentBlock++;
             ReferenceManager.Instance.currentTrial = 0;
 
@@ -61,6 +92,7 @@ public class TextEntryTrialManager : MonoBehaviour
         else
         {
             CalculatePerformance(inputText.text, false);
+           
         }
         
 
@@ -71,6 +103,7 @@ public class TextEntryTrialManager : MonoBehaviour
         stopwatch.Pause();
         int _seconds = stopwatch.GetSeconds();
         stopwatch.Reset();
+        isTyping = false;
         int characters;
         string s = inputText;
         int count = 0;
@@ -99,7 +132,21 @@ public class TextEntryTrialManager : MonoBehaviour
         data.error_rate = errorRate.ToString();
         data.SPC = kspc.ToString();
         ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].Trials.Add(data);
+
+        KeystrokeData keystrokeData = new KeystrokeData();
+        keystrokeData.originalString = ReferenceManager.Instance._uiManager.referenceText.text;
+        keystrokeData.typedString = inputText;
+        foreach (KeystoreItems item in keystoreItems)
+        {
+            
+            keystrokeData.keystrokes.Add(new KeystoreItems { time = item.time, character = item.character });
+        }
+
+        
+        ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].TrialKeystrokes.Add(keystrokeData);
+
         ReferenceManager.Instance._uiManager.resultsScreen.ShowResults(ReferenceManager.Instance._uiManager.referenceText.text, inputText, characters, _seconds, speedWpm, errorRate, MSD, kspc, isBlockDone);
+        keystoreItems.Clear();
     }
 
     /// <summary>

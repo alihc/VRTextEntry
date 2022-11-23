@@ -7,6 +7,7 @@ public class DataManager : MonoBehaviour
     public UserData UserData;
     public List<TextPhraseData> PhrasesData;
     public List<BlockData> Blocks;
+    
     public string path;
     
 }

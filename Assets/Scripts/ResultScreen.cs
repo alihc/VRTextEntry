@@ -38,7 +38,7 @@ public class ResultScreen : MonoBehaviour
     {
         if(isBlockDone)
         {
-            blockText.text = ReferenceManager.Instance.currentBlock + " Block Completed";
+            blockText.text = ReferenceManager.Instance.currentBlock+1 + " Block Completed";
             button.gameObject.SetActive(true);
             blockText.gameObject.SetActive(true);
         }

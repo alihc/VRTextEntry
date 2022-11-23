@@ -5,4 +5,5 @@ using System.Collections.Generic;
 public class BlockData 
 {
     public List<TrialData> Trials;
+    public List<KeystrokeData> TrialKeystrokes;
 }

@@ -37,9 +37,32 @@ public class FileManager : MonoBehaviour
         }
     }
 
-    public void OnBlockSave()
+    public void OnKeystrokeSave()
     {
 
+        string directory = ReferenceManager.Instance._dataManager.path;
+        string fname = directory + "-00" + (ReferenceManager.Instance.currentBlock+1) + ".sd1";
+        string path = Path.Combine(Application.persistentDataPath, fname);
+        StreamWriter sw = new StreamWriter(path, false);
+        for (int i = 0; i < ReferenceManager.Instance.blockSize; i++)
+        {
+            sw.WriteLine(ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].TrialKeystrokes[i].originalString);
+            sw.WriteLine(ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].TrialKeystrokes[i].typedString);
+            for (int j = 0; j < ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].TrialKeystrokes[i].keystrokes.Count; j++)
+            {
+                sw.WriteLine(ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].TrialKeystrokes[i].keystrokes[j].time.ToString()+" "+ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].TrialKeystrokes[i].keystrokes[j].character);
+                
+            }
+            sw.WriteLine("#");
+        }
+
+
+        sw.Close();
+
+    }
+    public void OnBlockSave()
+    {
+       
         string directory = ReferenceManager.Instance._dataManager.path;
         string fname = directory + "-00"+ (ReferenceManager.Instance.currentBlock+1) + ".sd2";
         string path = Path.Combine(Application.persistentDataPath, fname);
@@ -62,8 +85,11 @@ public class FileManager : MonoBehaviour
         
        
         sw.Close();
-        
+       
+
     }
+
+   
 
     public void OnRead()
     {

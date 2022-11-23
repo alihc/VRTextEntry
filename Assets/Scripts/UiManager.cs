@@ -36,8 +36,9 @@ public class UiManager : MonoBehaviour
 			vrExpYesButton.onClick.AddListener(delegate { OnVrExpierience(true); });
 			vrExpNoButton.onClick.AddListener(delegate { OnVrExpierience(false); });
 			proceeedButon.gameObject.SetActive(false);
-			
-			
+
+			//DebugSave();
+
 		}
 		else
 		{
@@ -125,6 +126,13 @@ public class UiManager : MonoBehaviour
 		SceneManager.LoadScene(1);
 
 	}
+
+	void DebugSave()
+    {
+		string path = ReferenceManager.Instance.fileManager.OnInfoSave();
+		ReferenceManager.Instance._dataManager.path = path;
+		ReferenceManager.Instance.fileManager.OnBlockSave();
+    }
 
 
 	

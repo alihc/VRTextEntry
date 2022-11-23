@@ -9,6 +9,7 @@ using System;
 public class MyEvent : UnityEvent { }
 
 
+
 public class Keyboard : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -17,6 +18,8 @@ public class Keyboard : MonoBehaviour
     public TextEntryTrialManager textEntryTrialManager;
 
     public MyEvent acceptEvent;
+    public delegate void KeyEvent(string ch);
+    public static event KeyEvent OnKey;
 
 
     void Start()
@@ -39,6 +42,18 @@ public class Keyboard : MonoBehaviour
         {
             textEntryTrialManager.totalKeystrokes++;
         }
+        if (OnKey != null)
+        {
+            if(c.Equals(" "))
+            {
+                OnKey("space");
+            }
+            else
+            {
+                OnKey(c);
+            }
+        }
+            
     }
 
     //removing a letter from the input
@@ -50,11 +65,15 @@ public class Keyboard : MonoBehaviour
         {
             objectiveInputField.text = actualText.Remove(actualText.Length - 1);
         }
+        if (OnKey != null)
+            OnKey("backspace");
     }
 
     
     public void Accept()
     {
+        if (OnKey != null)
+            OnKey("enter");
         acceptEvent.Invoke();
     }
 
