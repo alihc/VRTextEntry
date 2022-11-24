@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class MultipleOVRraycaster : MonoBehaviour
 {
-
+    public AudioSource audioSource;
     [Header("The origin for the raycast")]
     public Transform raycastOrigin_L;
     public Transform raycastOrigin_R;
@@ -346,7 +346,6 @@ public class MultipleOVRraycaster : MonoBehaviour
         bool condition_R = InputManager.instance.T_R_DW;
 
 
-
         //in function of the conditions do this
         if (condition_L)
         {
@@ -358,6 +357,10 @@ public class MultipleOVRraycaster : MonoBehaviour
                 if (selectedGameObject_L.GetComponent<Button>() != null)
                 {
                     selectedGameObject_L.GetComponent<Button>().onClick.Invoke();
+                    if(audioSource!=null)
+                    {
+                        audioSource.Play();
+                    }
                 }
                 else
                 {
@@ -378,6 +381,10 @@ public class MultipleOVRraycaster : MonoBehaviour
                 if (selectedGameObject_R.GetComponent<Button>() != null)
                 {
                     selectedGameObject_R.GetComponent<Button>().onClick.Invoke();
+                    if (audioSource != null)
+                    {
+                        audioSource.Play();
+                    }
                 }
                 else
                 {

@@ -2,13 +2,14 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public class TextEntryTrialManager : MonoBehaviour
 {
     public string keyboardType;
     public GameObject keyboard;
     public Keyboard keyboardScript;
-    public Stopwatch stopwatch;
+    public Stopwatch stopwatch= new Stopwatch();
 
 
 
@@ -41,7 +42,8 @@ public class TextEntryTrialManager : MonoBehaviour
         if (isTyping)
         {
             KeystoreItems item = new KeystoreItems();
-            item.time = stopwatch.GetMilliseconds();
+            long s = stopwatch.ElapsedMilliseconds;
+            item.time = s;
             item.character = c;
             keystoreItems.Add(item);
         }
@@ -70,7 +72,7 @@ public class TextEntryTrialManager : MonoBehaviour
         keyboardScript.objectiveInputField.text = "";
         keyboard.SetActive(true);
        
-        stopwatch.Begin();
+        stopwatch.Start();
         isTyping = true;
     }
 
@@ -100,8 +102,9 @@ public class TextEntryTrialManager : MonoBehaviour
 
     void CalculatePerformance(string inputText, bool isBlockDone)
     {
-        stopwatch.Pause();
-        int _seconds = stopwatch.GetSeconds();
+        
+        int _seconds = stopwatch.Elapsed.Seconds;
+        stopwatch.Stop();
         stopwatch.Reset();
         isTyping = false;
         int characters;
