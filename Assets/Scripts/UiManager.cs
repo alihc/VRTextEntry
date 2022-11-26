@@ -43,7 +43,7 @@ public class UiManager : MonoBehaviour
 		else
 		{
 			ReferenceManager.Instance._uiManager = this;
-			Invoke("OnResultsOk", 2f);
+			//Invoke("OnResultsOk", 2f);
 		}
 
 
@@ -142,7 +142,6 @@ public class UiManager : MonoBehaviour
 		startButton.SetActive(true);
 		referenceTextParent.gameObject.SetActive(true);
 		ReferenceManager.Instance._textEntryTrialManager.SelectNewPhrase();
-		
 
 	}
 	public void OnPhraseDone()
