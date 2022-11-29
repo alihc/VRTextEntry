@@ -22,9 +22,10 @@ public class ResultScreen : MonoBehaviour
     }
     public void Okay()
     {
-        if (ReferenceManager.Instance.currentBlock == ReferenceManager.Instance.blockSize)
+        if (ReferenceManager.Instance.currentBlock == ReferenceManager.Instance.totalBlocks)
         {
-
+            this.gameObject.SetActive(false);
+            ReferenceManager.Instance._uiManager.EndOfTrailScreen.SetActive(true);
         }
         else
         {

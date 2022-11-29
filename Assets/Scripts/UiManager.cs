@@ -9,6 +9,7 @@ public class UiManager : MonoBehaviour
 {
 	[Header("Welcome Screen")]
 	public bool isWelcomeScene;
+	public GameObject introScreen;
 	public InputField initialsInputField;
 	public InputField ageInputField;
 	public Button maleButton, femaleButton;
@@ -22,6 +23,7 @@ public class UiManager : MonoBehaviour
 	public GameObject referenceTextParent;
 	public Text referenceText;
 	public ResultScreen resultsScreen;
+	public GameObject EndOfTrailScreen;
 	public Text debugText;
 
 
@@ -53,7 +55,16 @@ public class UiManager : MonoBehaviour
 		
 	}
 
-	
+	public void OnStandard()
+    {
+		ReferenceManager.Instance.condition = ReferenceManager.Condition1String;
+		introScreen.gameObject.SetActive(true);
+    }
+	public void OnSplit()
+    {
+		ReferenceManager.Instance.condition = ReferenceManager.Condition2String;
+		introScreen.gameObject.SetActive(false);
+	}
 	public void OnInitialsDone(string input)
 	{
 		string _text= input;
@@ -123,7 +134,14 @@ public class UiManager : MonoBehaviour
     {
 		string path= ReferenceManager.Instance.fileManager.OnInfoSave();
 		ReferenceManager.Instance._dataManager.path = path;
-		SceneManager.LoadScene(1);
+		if (ReferenceManager.Instance.condition.Equals(ReferenceManager.Condition1String))
+		{
+			SceneManager.LoadScene(1);
+		}
+		else
+		{
+			SceneManager.LoadScene(2);
+		}
 
 	}
 

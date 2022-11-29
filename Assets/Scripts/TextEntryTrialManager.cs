@@ -24,6 +24,7 @@ public class TextEntryTrialManager : MonoBehaviour
     {
         ReferenceManager.Instance._textEntryTrialManager = this;
         keystoreItems = new List<KeystoreItems>();
+        ReferenceManager.Instance.currentKeyboard = keyboardType;
 
     }
 
@@ -88,6 +89,7 @@ public class TextEntryTrialManager : MonoBehaviour
             ReferenceManager.Instance.fileManager.OnKeystrokeSave();
             ReferenceManager.Instance.currentBlock++;
             ReferenceManager.Instance.currentTrial = 0;
+           
 
 
         }

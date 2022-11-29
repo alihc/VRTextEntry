@@ -26,7 +26,9 @@ public class ReferenceManager : MonoBehaviour
     [Header("runTime")]
     public int currentTrial;
     public int currentBlock;
+    public string currentKeyboard;
     public string condition;
+    public bool hasFinishedFirstType = false;
 
 
     [Header("Links")]
@@ -34,5 +36,8 @@ public class ReferenceManager : MonoBehaviour
     public DataManager _dataManager;
     public UiManager _uiManager;
     public TextEntryTrialManager _textEntryTrialManager;
-    
+
+    public static string Condition1String= "StanSplit";
+    public static string Condition2String= "SplitStan";
+
 }

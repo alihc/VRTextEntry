@@ -41,7 +41,7 @@ public class FileManager : MonoBehaviour
     {
 
         string directory = ReferenceManager.Instance._dataManager.path;
-        string fname = directory + "-00" + (ReferenceManager.Instance.currentBlock+1) + ".sd1";
+        string fname = directory+"-" + ReferenceManager.Instance.currentKeyboard + "-00" + (ReferenceManager.Instance.currentBlock+1) + ".sd1";
         string path = Path.Combine(Application.persistentDataPath, fname);
         StreamWriter sw = new StreamWriter(path, false);
         for (int i = 0; i < ReferenceManager.Instance.blockSize; i++)
@@ -64,7 +64,7 @@ public class FileManager : MonoBehaviour
     {
        
         string directory = ReferenceManager.Instance._dataManager.path;
-        string fname = directory + "-00"+ (ReferenceManager.Instance.currentBlock+1) + ".sd2";
+        string fname = directory + "-" + ReferenceManager.Instance.currentKeyboard + "-00"+ (ReferenceManager.Instance.currentBlock+1) + ".sd2";
         string path = Path.Combine(Application.persistentDataPath, fname);
         StreamWriter sw = new StreamWriter(path, false);
         sw.WriteLine("keyboard,condition,block,trial,characters,time,MSD,speed,error_rate,SPC");

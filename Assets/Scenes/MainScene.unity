@@ -5181,6 +5181,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Intro
       objectReference: {fileID: 0}
+    - target: {fileID: 338815641865187913, guid: 7bfa5e105623f4f96afb43ed26682c87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 370515242722300847, guid: 7bfa5e105623f4f96afb43ed26682c87, type: 3}
       propertyPath: m_TargetGraphic
       value: 
@@ -6926,7 +6930,9 @@ MonoBehaviour:
   blockSize: 5
   currentTrial: 0
   currentBlock: 0
-  condition: ssc
+  currentKeyboard: 
+  condition: 
+  hasFinishedFirstType: 0
   fileManager: {fileID: 748045256}
   _dataManager: {fileID: 748045253}
   _uiManager: {fileID: 1211255778}
@@ -8493,7 +8499,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: KEYBOARD WITH PHYSICS
+  m_Text: STANDARD KEYBOARD
 --- !u!222 &852689282
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11290,6 +11296,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 567609067275951437, guid: 4b16d36f084dffb4ca22f1affb5e06b0, type: 3}
   m_PrefabInstance: {fileID: 1079892290}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1088995824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 338815641865187913, guid: 7bfa5e105623f4f96afb43ed26682c87, type: 3}
+  m_PrefabInstance: {fileID: 581962506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1092828104
 GameObject:
   m_ObjectHideFlags: 0
@@ -11557,12 +11568,12 @@ GameObject:
   - component: {fileID: 1095816192}
   - component: {fileID: 1095816191}
   m_Layer: 5
-  m_Name: scene3
+  m_Name: Split
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1095816190
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11628,14 +11639,38 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: GoToScene
-        m_Mode: 3
+      - m_Target: {fileID: 1751398791}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1095816189}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1211255778}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: OnSplit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -12559,7 +12594,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TABLET / PHONE
+  m_Text: SPLIT KEYBOARD
 --- !u!222 &1166047335
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13016,6 +13051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWelcomeScene: 1
+  introScreen: {fileID: 1088995824}
   initialsInputField: {fileID: 1336807447}
   ageInputField: {fileID: 1336807449}
   maleButton: {fileID: 1957856753}
@@ -13033,6 +13069,7 @@ MonoBehaviour:
   referenceTextParent: {fileID: 0}
   referenceText: {fileID: 0}
   resultsScreen: {fileID: 0}
+  EndOfTrailScreen: {fileID: 0}
   debugText: {fileID: 0}
 --- !u!65 &1211255779
 BoxCollider:
@@ -19169,12 +19206,12 @@ GameObject:
   - component: {fileID: 1751398794}
   - component: {fileID: 1751398793}
   m_Layer: 5
-  m_Name: scene2
+  m_Name: Standard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1751398792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19240,14 +19277,38 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: GoToScene
-        m_Mode: 3
+      - m_Target: {fileID: 1751398791}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1095816189}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1211255778}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: OnStandard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
