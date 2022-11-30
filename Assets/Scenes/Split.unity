@@ -3965,6 +3965,7 @@ MonoBehaviour:
     initials: 
     age: 
     sex: 
+    handPreference: 
     previousVRExp: 
   PhrasesData: []
   Blocks: []
@@ -3983,6 +3984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalBlocks: 5
   blockSize: 5
+  isLeftHanded: 0
   currentTrial: 0
   currentBlock: 0
   currentKeyboard: 
@@ -4308,8 +4310,10 @@ MonoBehaviour:
   vrExpNoButton: {fileID: 0}
   vrExpYesButtonSelected: {fileID: 0}
   vrExpNoButtonSelected: {fileID: 0}
-  keyBoardIn: {fileID: 0}
-  keyBoardNum: {fileID: 0}
+  leftButton: {fileID: 0}
+  rightButton: {fileID: 0}
+  leftButtonSelected: {fileID: 0}
+  rightButtonSelected: {fileID: 0}
   proceeedButon: {fileID: 0}
   startButton: {fileID: 1488848657}
   referenceTextParent: {fileID: 125171768}

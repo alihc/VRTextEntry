@@ -16,7 +16,8 @@ public class UiManager : MonoBehaviour
 	public GameObject maleButtonSelected, femaleButtonSelected;
 	public Button vrExpYesButton, vrExpNoButton;
 	public GameObject vrExpYesButtonSelected, vrExpNoButtonSelected;
-	public KeyBoard keyBoardIn, keyBoardNum;
+	public Button leftButton, rightButton;
+	public GameObject leftButtonSelected, rightButtonSelected;
 	public Button proceeedButon;
 	[Header("Trail Screen")]
 	public GameObject startButton;
@@ -27,7 +28,7 @@ public class UiManager : MonoBehaviour
 	public Text debugText;
 
 
-	private bool isInitialDone, isAgeDone, isSexDone, isExpDone;
+	private bool isInitialDone, isAgeDone, isSexDone, isExpDone, isHandDone;
 	public void Start()
 	{
         if (isWelcomeScene)
@@ -37,6 +38,8 @@ public class UiManager : MonoBehaviour
 			femaleButton.onClick.AddListener(delegate { OnSex(false); });
 			vrExpYesButton.onClick.AddListener(delegate { OnVrExpierience(true); });
 			vrExpNoButton.onClick.AddListener(delegate { OnVrExpierience(false); });
+			rightButton.onClick.AddListener(delegate { OnHandChoice(false); });
+			leftButton.onClick.AddListener(delegate { OnHandChoice(true); });
 			proceeedButon.gameObject.SetActive(false);
 
 			//DebugSave();
@@ -63,7 +66,7 @@ public class UiManager : MonoBehaviour
 	public void OnSplit()
     {
 		ReferenceManager.Instance.condition = ReferenceManager.Condition2String;
-		introScreen.gameObject.SetActive(false);
+		introScreen.gameObject.SetActive(true);
 	}
 	public void OnInitialsDone(string input)
 	{
@@ -118,9 +121,20 @@ public class UiManager : MonoBehaviour
 		CheckProceesButton();
 	}
 
+	void OnHandChoice(bool isLeft)
+	{
+
+		leftButtonSelected.SetActive(isLeft);
+		rightButtonSelected.SetActive(!isLeft);
+		ReferenceManager.Instance._dataManager.UserData.handPreference = isLeft ? "Left" : "Right";
+		isHandDone = true;
+		ReferenceManager.Instance.isLeftHanded = isLeft;
+		CheckProceesButton();
+	}
+
 	void CheckProceesButton()
     {
-		if(isInitialDone && isAgeDone && isSexDone && isExpDone)
+		if(isInitialDone && isAgeDone && isSexDone && isExpDone && isHandDone)
         {
 			proceeedButon.gameObject.SetActive(true);
 		}

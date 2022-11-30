@@ -5093,6 +5093,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1211255783}
     m_Modifications:
+    - target: {fileID: 338815641274995159, guid: 7bfa5e105623f4f96afb43ed26682c87, type: 3}
+      propertyPath: m_text
+      value: Your time and contribution to this research are appreciated. Please
+        make sure that wearing the head-mounted display is comfortable for you and
+        that your VR vision is not blurry. When you are prepared, click "Start."
+      objectReference: {fileID: 0}
     - target: {fileID: 338815641865187912, guid: 7bfa5e105623f4f96afb43ed26682c87, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6900,6 +6906,7 @@ MonoBehaviour:
     initials: 
     age: 
     sex: 
+    handPreference: 
     previousVRExp: 
   PhrasesData: []
   Blocks:
@@ -6928,6 +6935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalBlocks: 5
   blockSize: 5
+  isLeftHanded: 0
   currentTrial: 0
   currentBlock: 0
   currentKeyboard: 
@@ -9676,6 +9684,38 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 567609067275951437, guid: 4b16d36f084dffb4ca22f1affb5e06b0, type: 3}
   m_PrefabInstance: {fileID: 935028090}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &941795284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2876289255858744545, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+  m_PrefabInstance: {fileID: 1957856743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &941795285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3582655351876022776, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+  m_PrefabInstance: {fileID: 1957856743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &941795286 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1271364649238172216, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+  m_PrefabInstance: {fileID: 1957856743}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &941795287 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7950371409615863654, guid: 321616f9e9e484f7bb9fe35bb547c8f1, type: 3}
+  m_PrefabInstance: {fileID: 1957856743}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &952835116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13062,8 +13102,10 @@ MonoBehaviour:
   vrExpNoButton: {fileID: 1957856748}
   vrExpYesButtonSelected: {fileID: 1957856747}
   vrExpNoButtonSelected: {fileID: 1957856744}
-  keyBoardIn: {fileID: 0}
-  keyBoardNum: {fileID: 0}
+  leftButton: {fileID: 941795287}
+  rightButton: {fileID: 941795286}
+  leftButtonSelected: {fileID: 941795285}
+  rightButtonSelected: {fileID: 941795284}
   proceeedButon: {fileID: 1016790631}
   startButton: {fileID: 0}
   referenceTextParent: {fileID: 0}

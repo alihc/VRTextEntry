@@ -19,11 +19,12 @@ public class FileManager : MonoBehaviour
         string fname = directory+ ".sd0";
         string path = Path.Combine(Application.persistentDataPath, fname);
         StreamWriter sw = new StreamWriter(path, false);
-        sw.WriteLine("Initials,Age,Sex,VrExp");
+        sw.WriteLine("Initials,Age,Sex,Hand,VrExp");
         sw.WriteLine(
             ReferenceManager.Instance._dataManager.UserData.initials+ "," +
             ReferenceManager.Instance._dataManager.UserData.age + "," + 
-            ReferenceManager.Instance._dataManager.UserData.sex + "," + 
+            ReferenceManager.Instance._dataManager.UserData.sex + "," +
+            ReferenceManager.Instance._dataManager.UserData.handPreference + "," +
             ReferenceManager.Instance._dataManager.UserData.previousVRExp);
         
         sw.Close();

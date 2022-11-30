@@ -24,6 +24,7 @@ public class ReferenceManager : MonoBehaviour
     public int totalBlocks = 5;
     public int blockSize = 5;
     [Header("runTime")]
+    public bool isLeftHanded=false;
     public int currentTrial;
     public int currentBlock;
     public string currentKeyboard;
