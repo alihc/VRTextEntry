@@ -13,7 +13,7 @@ public class EndOfTrial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(ReferenceManager.Instance.condition.Equals(ReferenceManager.Condition1String))
+        if(ReferenceManager.Instance.currentKeyboard.Equals("standard"))
         {
             messsageText.text = stringForStandard;
         }
@@ -35,7 +35,8 @@ public class EndOfTrial : MonoBehaviour
 
     public void OnDone()
     {
-        Application.Quit();
+        ReferenceManager.Instance._uiManager.finalQuestionair.SetActive(true);
+        gameObject.SetActive(false);
     }
 
     public void OnNext()

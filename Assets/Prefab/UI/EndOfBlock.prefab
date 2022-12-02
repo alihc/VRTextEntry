@@ -288,7 +288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &338815641865187912
 RectTransform:
   m_ObjectHideFlags: 0
@@ -362,8 +362,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messsageText: {fileID: 338815641274995159}
-  stringForStandard: 'You have successfully completed trial for "Standard Keyboard". '
-  stringForSplit: 'You have successfully completed trial for "Split Keyboard". '
+  stringForStandard: 'You have successfully completed the trial for the "Standard
+    one-handed keyboard". '
+  stringForSplit: 'You have successfully completed the trial for the  "Split two-handed
+    keyboard".  '
   doneButton: {fileID: 339884942378454061}
   nextButton: {fileID: 2602631073889297595}
 --- !u!1 &1199728324012772311

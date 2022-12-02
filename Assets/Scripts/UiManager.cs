@@ -25,6 +25,7 @@ public class UiManager : MonoBehaviour
 	public Text referenceText;
 	public ResultScreen resultsScreen;
 	public GameObject EndOfTrailScreen;
+	public GameObject finalQuestionair;
 	public Text debugText;
 
 

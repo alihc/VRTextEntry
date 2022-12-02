@@ -38,6 +38,22 @@ public class FileManager : MonoBehaviour
         }
     }
 
+    public void OnQuestionareSave()
+    {
+        string directory = ReferenceManager.Instance._dataManager.path;
+        string fname = directory + ".sd0";
+        string path = Path.Combine(Application.persistentDataPath, fname);
+        StreamWriter sw = new StreamWriter(path, true);
+        sw.WriteLine("Standard_Rating,Split_Rating,Preffered_Method");
+        sw.WriteLine(
+            ReferenceManager.Instance._dataManager.UserData.Standard_rating + "," +
+            ReferenceManager.Instance._dataManager.UserData.Split_rating + "," +
+            ReferenceManager.Instance._dataManager.UserData.Preferred_Keyboard);
+
+        sw.Close();
+       
+    }
+
     public void OnKeystrokeSave()
     {
 
@@ -68,7 +84,7 @@ public class FileManager : MonoBehaviour
         string fname = directory + "-" + ReferenceManager.Instance.currentKeyboard + "-00"+ (ReferenceManager.Instance.currentBlock+1) + ".sd2";
         string path = Path.Combine(Application.persistentDataPath, fname);
         StreamWriter sw = new StreamWriter(path, false);
-        sw.WriteLine("keyboard,condition,block,trial,characters,time,MSD,speed,error_rate,SPC");
+        sw.WriteLine("Keyboard,Condition,Block,Trial,Characters,Time,MSD,Speed,Error_rate,SPC");
         for (int i=0; i<ReferenceManager.Instance.blockSize;i++)
         {
             sw.WriteLine(
