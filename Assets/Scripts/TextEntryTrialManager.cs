@@ -122,7 +122,7 @@ public class TextEntryTrialManager : MonoBehaviour
         ReferenceManager.Instance._uiManager.debugText.text = ReferenceManager.Instance._uiManager.debugText.text + "Total KeyStore: " + totalKeystrokes;
         ReferenceManager.Instance._uiManager.debugText.text = ReferenceManager.Instance._uiManager.debugText.text + "speedWpm: " + speedWpm;
         float kspc = (float)totalKeystrokes / (float)count;
-        int MSD = LevenshteinDistance(ReferenceManager.Instance._uiManager.referenceText.text, inputText);
+        int MSD = findDistance(ReferenceManager.Instance._uiManager.referenceText.text, inputText);
         float errorRate = CalculateErrorRate(ReferenceManager.Instance._uiManager.referenceText.text, inputText, MSD);
         //Data Writting
         TrialData data = new TrialData();
@@ -161,59 +161,78 @@ public class TextEntryTrialManager : MonoBehaviour
     /// <summary>
     /// Compute the distance between two strings.
     /// </summary>
-    public static int LevenshteinDistance(string s, string t)
+    public int findDistance(String a, String b)
     {
-        int n = s.Length;
-        int m = t.Length;
-        int[,] d = new int[n + 1, m + 1];
-
-        // Step 1
-        if (n == 0)
+        int[,] d = new int[a.Length + 1, b.Length + 1];
+        // Initialising first column:
+        for (int i = 0; i <= a.Length; i++)
         {
-            return m;
+            d[i, 0] = i;
         }
-
-        if (m == 0)
+        // Initialising first row:
+        for (int j = 0; j <= b.Length; j++)
         {
-            return n;
+            d[0, j] = j;
         }
-
-        // Step 2
-        for (int i = 0; i <= n; d[i, 0] = i++)
+        // Applying the algorithm:
+        int insertion;
+        int deletion;
+        int replacement;
+        for (int i = 1; i <= a.Length; i++)
         {
-        }
-
-        for (int j = 0; j <= m; d[0, j] = j++)
-        {
-        }
-
-        // Step 3
-        for (int i = 1; i <= n; i++)
-        {
-            //Step 4
-            for (int j = 1; j <= m; j++)
+            for (int j = 1; j <= b.Length; j++)
             {
-                // Step 5
-                int cost = (t[j - 1] == s[i - 1]) ? 0 : 1;
-
-                // Step 6
-                d[i, j] = Math.Min(
-                    Math.Min(d[i - 1, j] + 1, d[i, j - 1] + 1),
-                    d[i - 1, j - 1] + cost);
+                if (a[i - 1] == (b[j - 1]))
+                {
+                    d[i, j] = d[i - 1, j - 1];
+                }
+                else
+                {
+                    insertion = d[i, j - 1];
+                    deletion = d[i - 1, j];
+                    replacement = d[i - 1, j - 1];
+                    // Using the sub-problems
+                    d[i, j] = 1 + this.findMin(insertion, deletion, replacement);
+                }
             }
         }
-        // Step 7
-        return d[n, m];
+        int msd = d[a.Length, b.Length];
+        if(a.Equals(b))
+        {
+            return 0;
+        }
+        else
+        {
+            msd = msd-1;
+            return msd;
+        }
+       
+    }
+    // Helper funciton used by findDistance()
+    public int findMin(int x, int y, int z)
+    {
+        if (x <= y && x <= z)
+        {
+            return x;
+        }
+        if (y <= x && y <= z)
+        {
+            return y;
+        }
+        else
+        {
+            return z;
+        }
     }
 
     float  CalculateErrorRate(string source, string target, int msd)
     {
-        if(msd==1)
+        if(msd==0)
             return 0;
         int stringLenghth = (source.Length < target.Length) ? target.Length : source.Length;
         stringLenghth--;
-        ReferenceManager.Instance._uiManager.debugText.text = ReferenceManager.Instance._uiManager.debugText.text + " String Length: " + stringLenghth;
-        ReferenceManager.Instance._uiManager.debugText.text = ReferenceManager.Instance._uiManager.debugText.text + " MSD: " + msd;
+      //  ReferenceManager.Instance._uiManager.debugText.text = ReferenceManager.Instance._uiManager.debugText.text + " String Length: " + stringLenghth;
+       // ReferenceManager.Instance._uiManager.debugText.text = ReferenceManager.Instance._uiManager.debugText.text + " MSD: " + msd;
         float errorRate = ((float)msd / (float)stringLenghth) * 100;
         ReferenceManager.Instance._uiManager.debugText.text = ReferenceManager.Instance._uiManager.debugText.text+ "Error Rate: " + errorRate;
         return errorRate;
