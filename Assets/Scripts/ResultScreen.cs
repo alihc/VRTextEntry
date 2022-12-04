@@ -35,7 +35,7 @@ public class ResultScreen : MonoBehaviour
        
     }
 
-    public void ShowResults(string presentedString, string transsribedString, int charactersString, int timeString, float speedString, float errorRateString, int msdString, float spcString, bool isBlockDone)
+    public void ShowResults(string presentedString, string transsribedString, int charactersString, float timeString, float speedString, float errorRateString, int msdString, float spcString, bool isBlockDone)
     {
         if(isBlockDone)
         {
@@ -51,8 +51,8 @@ public class ResultScreen : MonoBehaviour
         }
         presentedText.text = presentedString;
         transcribedText.text = transsribedString;
-        characters.text = charactersString + " (" + charactersString / 5.00f + ")";
-        time.text = timeString + "s (" + timeString / 60.00f + " minutes)";
+        characters.text = charactersString + " (" + charactersString / 5.00f + " words)";
+        time.text = timeString + "s (" + timeString / (float)60.00f + " minutes)";
         speed.text = speedString + " wpm";
         errorRate.text = errorRateString + " %";
         msd.text = msdString + " ";

@@ -24,6 +24,7 @@ public class ReferenceManager : MonoBehaviour
     public int totalBlocks = 5;
     public int blockSize = 5;
     [Header("runTime")]
+    public string P_Code;
     public bool isLeftHanded=false;
     public int currentTrial;
     public int currentBlock;
@@ -38,7 +39,8 @@ public class ReferenceManager : MonoBehaviour
     public UiManager _uiManager;
     public TextEntryTrialManager _textEntryTrialManager;
 
-    public static string Condition1String= "StanSplit";
-    public static string Condition2String= "SplitStan";
+    public static string Condition1String= "Standard_1H";
+    public static string Condition2String= "Split_2H";
+    public static string AppName = "KeyboardVRExperiment";
 
 }

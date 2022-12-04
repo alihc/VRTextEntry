@@ -10,7 +10,7 @@ public class TextEntryTrialManager : MonoBehaviour
     public GameObject keyboard;
     public Keyboard keyboardScript;
     public Stopwatch stopwatch= new Stopwatch();
-
+   
 
 
     [Header("Runtime")]
@@ -37,6 +37,8 @@ public class TextEntryTrialManager : MonoBehaviour
     {
         Keyboard.OnKey -= OnKeyPressed;
     }
+
+   
 
     void OnKeyPressed(string c)
     {
@@ -104,8 +106,9 @@ public class TextEntryTrialManager : MonoBehaviour
 
     void CalculatePerformance(string inputText, bool isBlockDone)
     {
-        
-        int _seconds = stopwatch.Elapsed.Seconds;
+
+        long Long_s = stopwatch.ElapsedMilliseconds;
+        float _seconds = Long_s / (float)1000;
         stopwatch.Stop();
         stopwatch.Reset();
         isTyping = false;
@@ -118,9 +121,9 @@ public class TextEntryTrialManager : MonoBehaviour
         }
         characters = count-1;
         float speedWpm;
-        speedWpm = ((float)characters / (float)_seconds) * 12.0f;
-        ReferenceManager.Instance._uiManager.debugText.text = ReferenceManager.Instance._uiManager.debugText.text + "Total KeyStore: " + totalKeystrokes;
-        ReferenceManager.Instance._uiManager.debugText.text = ReferenceManager.Instance._uiManager.debugText.text + "speedWpm: " + speedWpm;
+        speedWpm = (characters /_seconds) * 12.0f;
+        //ReferenceManager.Instance._uiManager.debugText.text = ReferenceManager.Instance._uiManager.debugText.text + "Total KeyStore: " + totalKeystrokes;
+        //ReferenceManager.Instance._uiManager.debugText.text = ReferenceManager.Instance._uiManager.debugText.text + "speedWpm: " + speedWpm;
         float kspc = (float)totalKeystrokes / (float)count;
         int MSD = findDistance(ReferenceManager.Instance._uiManager.referenceText.text, inputText);
         float errorRate = CalculateErrorRate(ReferenceManager.Instance._uiManager.referenceText.text, inputText, MSD);
@@ -128,8 +131,9 @@ public class TextEntryTrialManager : MonoBehaviour
         TrialData data = new TrialData();
         data.keyboard = keyboardType;
         data.condition = ReferenceManager.Instance.condition;
-        data.block = ReferenceManager.Instance.currentBlock+1.ToString();
-        data.trial = ReferenceManager.Instance.currentTrial.ToString();
+        data.block = "B0"+(ReferenceManager.Instance.currentBlock+1).ToString();
+        data.trial = "S0"+ReferenceManager.Instance.currentTrial.ToString();
+        data.keystrokes = (totalKeystrokes-1).ToString();
         data.characters = characters.ToString();
         data.time = _seconds.ToString();
         data.MSD = MSD.ToString();

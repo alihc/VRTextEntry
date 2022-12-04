@@ -16,16 +16,19 @@ public class FileManager : MonoBehaviour
     public string OnInfoSave()
     {
         string directory = ReferenceManager.Instance._dataManager.UserData.initials + "-" + System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
-        string fname = directory+ ".sd0";
+        string fname = directory+ ".txt";
         string path = Path.Combine(Application.persistentDataPath, fname);
         StreamWriter sw = new StreamWriter(path, false);
-        sw.WriteLine("Initials,Age,Sex,Hand,VrExp");
+        sw.WriteLine("App,Participant,Initials,Age,Sex,Hand,VrExp, VrExpWeek_Hour");
         sw.WriteLine(
+            ReferenceManager.AppName + "," +
+            ReferenceManager.Instance.P_Code + "," +
             ReferenceManager.Instance._dataManager.UserData.initials+ "," +
             ReferenceManager.Instance._dataManager.UserData.age + "," + 
             ReferenceManager.Instance._dataManager.UserData.sex + "," +
             ReferenceManager.Instance._dataManager.UserData.handPreference + "," +
-            ReferenceManager.Instance._dataManager.UserData.previousVRExp);
+             ReferenceManager.Instance._dataManager.UserData.previousVRExp + "," +
+            ReferenceManager.Instance._dataManager.UserData.Exp_per_Hour);
         
         sw.Close();
         if (File.Exists(path))
@@ -41,7 +44,7 @@ public class FileManager : MonoBehaviour
     public void OnQuestionareSave()
     {
         string directory = ReferenceManager.Instance._dataManager.path;
-        string fname = directory + ".sd0";
+        string fname = directory + ".txt";
         string path = Path.Combine(Application.persistentDataPath, fname);
         StreamWriter sw = new StreamWriter(path, true);
         sw.WriteLine("Standard_Rating,Split_Rating,Preffered_Method");
@@ -84,14 +87,17 @@ public class FileManager : MonoBehaviour
         string fname = directory + "-" + ReferenceManager.Instance.currentKeyboard + "-00"+ (ReferenceManager.Instance.currentBlock+1) + ".sd2";
         string path = Path.Combine(Application.persistentDataPath, fname);
         StreamWriter sw = new StreamWriter(path, false);
-        sw.WriteLine("Keyboard,Condition,Block,Trial,Characters,Time,MSD,Speed,Error_rate,SPC");
+        sw.WriteLine("App,Participant,Keyboard,Condition,Block,Session,Keystrokes,Characters,Time(s),MSD,Speed(wpm),Error_rate(%),KSPC");
         for (int i=0; i<ReferenceManager.Instance.blockSize;i++)
         {
             sw.WriteLine(
+                ReferenceManager.AppName + "," +
+                ReferenceManager.Instance.P_Code + "," +
                 ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].Trials[i].keyboard + "," +
                 ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].Trials[i].condition + "," +
                 ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].Trials[i].block + "," +
                 ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].Trials[i].trial + "," +
+                ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].Trials[i].keystrokes + "," +
                 ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].Trials[i].characters + "," +
                 ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].Trials[i].time + "," +
                 ReferenceManager.Instance._dataManager.Blocks[ReferenceManager.Instance.currentBlock].Trials[i].MSD + "," +

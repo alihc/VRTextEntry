@@ -33,4 +33,16 @@ public class ResultText : MonoBehaviour
         outTxt.text = inpTxt.text;
         ReferenceManager.Instance._uiManager.OnAgeDone(inpTxt.text);
     }
+
+    public void OnVREXp(InputField inpTxt)
+    {
+        outTxt.text = inpTxt.text;
+        ReferenceManager.Instance._uiManager.OnTotalExp(inpTxt.text);
+    }
+
+    public void OnParticipntCode(InputField inpTxt)
+    {
+        outTxt.text = inpTxt.text;
+        ReferenceManager.Instance._uiManager.OnParticipantCode(inpTxt.text);
+    }
 }

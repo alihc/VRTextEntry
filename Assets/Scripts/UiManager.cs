@@ -133,6 +133,19 @@ public class UiManager : MonoBehaviour
 		CheckProceesButton();
 	}
 
+	public void OnTotalExp(string input)
+	{
+		string _text = input;
+		ReferenceManager.Instance._dataManager.UserData.Exp_per_Hour = _text;
+		
+	}
+	public void OnParticipantCode(string input)
+	{
+		string _text = input;
+		ReferenceManager.Instance.P_Code = _text;
+
+	}
+
 	void CheckProceesButton()
     {
 		if(isInitialDone && isAgeDone && isSexDone && isExpDone && isHandDone)
