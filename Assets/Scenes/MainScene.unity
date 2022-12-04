@@ -13229,6 +13229,7 @@ MonoBehaviour:
   referenceText: {fileID: 0}
   resultsScreen: {fileID: 0}
   EndOfTrailScreen: {fileID: 0}
+  finalQuestionair: {fileID: 0}
   debugText: {fileID: 0}
 --- !u!65 &1211255779
 BoxCollider:
@@ -19390,7 +19391,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -41.8}
+  m_AnchoredPosition: {x: 0, y: 15}
   m_SizeDelta: {x: 284.71, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1751398793
